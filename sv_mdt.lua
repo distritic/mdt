@@ -129,9 +129,14 @@ AddEventHandler("mdt:getOffenderDetails", function(offender)
 		vehicles[i].vehicle = json.decode(vehicles[i].vehicle)
 		vehicles[i].model = vehicles[i].vehicle.model
 		if vehicles[i].vehicle.color1 then
-			vehicles[i].color = colors[tostring(vehicles[i].vehicle.color1)]
-			if colors[tostring(vehicles[i].vehicle.color2)] then
+			if colors[tostring(vehicles[i].vehicle.color2)] and colors[tostring(vehicles[i].vehicle.color1)] then
 				vehicles[i].color = colors[tostring(vehicles[i].vehicle.color2)] .. " on " .. colors[tostring(vehicles[i].vehicle.color1)]
+			elseif colors[tostring(vehicles[i].vehicle.color1)] then
+				vehicles[i].color = colors[tostring(vehicles[i].vehicle.color1)]
+			elseif colors[tostring(vehicles[i].vehicle.color2)] then
+				vehicles[i].color = colors[tostring(vehicles[i].vehicle.color2)]
+			else
+				vehicles[i].color = "Unknown"
 			end
 		end
 		vehicles[i].vehicle = nil
@@ -196,9 +201,14 @@ AddEventHandler("mdt:getOffenderDetailsById", function(char_id)
 		vehicles[i].vehicle = json.decode(vehicles[i].vehicle)
 		vehicles[i].model = vehicles[i].vehicle.model
 		if vehicles[i].vehicle.color1 then
-			vehicles[i].color = colors[tostring(vehicles[i].vehicle.color1)]
-			if colors[tostring(vehicles[i].vehicle.color2)] then
+			if colors[tostring(vehicles[i].vehicle.color2)] and colors[tostring(vehicles[i].vehicle.color1)] then
 				vehicles[i].color = colors[tostring(vehicles[i].vehicle.color2)] .. " on " .. colors[tostring(vehicles[i].vehicle.color1)]
+			elseif colors[tostring(vehicles[i].vehicle.color1)] then
+				vehicles[i].color = colors[tostring(vehicles[i].vehicle.color1)]
+			elseif colors[tostring(vehicles[i].vehicle.color2)] then
+				vehicles[i].color = colors[tostring(vehicles[i].vehicle.color2)]
+			else
+				vehicles[i].color = "Unknown"
 			end
 		end
 		vehicles[i].vehicle = nil
