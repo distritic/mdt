@@ -161,7 +161,7 @@
                             </span>
                             <h4 v-if="report_new.recommended_fine > 0">Fine: ${{report_new.recommended_fine}}</h4>
                             <br />
-                            <button v-if="report_new.char_id && Object.keys(report_new.charges).length > 0 && report_new.incident && report_new.title" v-on:click="SubmitNewReport()" type="button" style="margin-top: 20px">SUBMIT REPORT</button>
+                            <button v-if="report_new.char_id && report_new.incident && report_new.title" v-on:click="SubmitNewReport()" type="button" style="margin-top: 20px">SUBMIT REPORT</button>
                             <button v-if="report_new.focus == 'charges'" v-on:click="report_new.focus = 'name'" type="button" style="margin-top: 20px">SEARCH OFFENDER</button>
                             <button v-if="report_new.focus == 'name'" v-on:click="report_new.focus = 'charges'" type="button" style="margin-top: 20px">SEARCH CHARGES</button>
                         </form>
