@@ -1,0 +1,115 @@
+#main {
+    position: relative;
+    text-align: center;
+    top: 10%;
+    width: 80%;
+    margin: auto;
+}
+#banner {
+    position: fixed;
+    display: inline-block;
+    bottom: 10%;
+    right: 1%;
+    max-width: 400px;
+    height: auto;
+    opacity: 0.3;
+    user-select: none;
+}
+#notification h4 {
+    font-weight: bold; 
+    margin: 0; 
+    color: white !important;
+}
+.page-title {
+    margin-bottom: 30px;
+}
+.noselect {
+    user-select: none;
+}
+.left-side {
+    float: left;
+    max-width: 50%;
+    max-height: 550px;
+    overflow-y: auto;
+    height: auto;
+    text-align: left;
+    user-select: none;
+}
+.right-side {
+    position: absolute;
+    left: 65%;
+    right: 10%;
+    width: 35%;
+    max-width: 300%;
+    max-height: 550px;
+    overflow-y: auto;
+    height: auto;
+    text-align: left;
+    user-select: none;
+}
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    border-radius: 5px;
+}
+.nav-active {
+    text-decoration: underline;
+    font-weight: bold;
+}
+.ellipsis {
+    position: relative;
+    width: 200px;
+}
+.ellipsis:before {
+    content: '&nbsp;';
+    visibility: hidden;
+    width: 200px;
+}
+.ellipsis span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 10px;
+    width: 200px;
+}
+.remove {
+    color: red; 
+    font-weight: all;
+}
+br {
+    user-select: none;
+}
+p {
+    font-family: "Courier";
+    color: white;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+input:focus {
+    outline: none;
+}
+button:focus {
+    outline: none;
+}
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 5px;
+}

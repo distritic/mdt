@@ -1,0 +1,220 @@
+.content {
+    position: absolute;
+    border-radius: 5px;
+    background-color: #011b37;
+    width: 75%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.content h2 {
+    font-family: "Arial Black";
+    user-select: none;
+    color: #fbbe28;
+    margin: 1px 1px 1px 1px;
+}
+.content h3 {
+    font-family: "Arial Black";
+    user-select: none;
+    color: #fbbe28;
+    margin: 1px 1px 1px 1px;
+}
+.content h4 {
+    font-family: "Courier";
+    font-weight: bolder;
+    font-size: 14px;
+    user-select: none;
+    color: #00a2d6;
+    margin: 1px 1px 1px 1px;
+}
+.content li {
+    font-family: "Courier";
+    font-weight: bolder;
+    color: white;
+    float: left;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-right: 2px solid #fbbe28;
+}
+.content li:last-child {
+    border-right: none;
+}
+.content button {
+    background-color: #fbbe28;
+    color: #011b37;
+    font-family: "Arial";
+    font-weight: bolder;
+    border: 4px solid #fbbe28;
+    font-size: 12pt;
+    text-align: center;
+    padding: 4px 3px;
+}
+.content input {
+    background-color: #011b37;
+    font-family: "Courier New";
+    border: 2px solid #fbbe28;
+    color: #00a2d6;
+    font-size: 12pt;
+    padding: 7px 15px 5px 15px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+.content textarea {
+    background-color: #011b37;
+    white-space: pre-line;
+    white-space: pre-wrap;
+    font-family: "Courier New";
+    font-weight: bolder;
+    font-size: 14px;
+    border-width:0px;
+    border:none;
+    color: #00a2d6;
+    font-size: 12pt;
+    padding: 0px 0px 0px 0px;
+    width: 550px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+    text-align: left;
+    outline: none;
+}
+.content th {
+    font-family: "Courier New";
+    font-weight: bolder;
+    font-size: 14px;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    border-bottom: 3px solid #fbbe28;
+}
+.content td {
+    font-family: "Courier New";
+    font-size: 14px;
+    color: #00a2d6;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #fbbe28;
+}
+.content table {
+    border-collapse: collapse;
+    column-gap: 3px solid #fbbe28;
+}
+.content table td + td { 
+    border-left: 2px solid #fbbe28; 
+}
+.content table th + th { 
+    border-left: 2px solid #fbbe28; 
+}
+.content tr:not(:first-child):hover {
+    background-color: #00152c;
+}
+.content button:hover {
+    background-color: #00a2d6;
+    border-color: #00a2d6;
+}
+.content ::-webkit-scrollbar-thumb {
+    background: #fbbe28; 
+    border-radius: 5px;
+}
+.badge {
+    position: fixed;
+    display: inline-block;
+    left: 3%;
+    top: 1.5%;
+    max-width: 160px;
+    height: auto;
+    background-color: #011b37;
+}
+.mugshot {
+    display: inline-block;
+    max-width: 215px;
+    height: auto;
+    border: 2px solid #fbbe28;
+    user-select: none;
+}
+.notification {
+    display: none;
+    z-index: 1;
+    position: fixed;
+    top: 15%;
+    left: 0%;
+    max-width: 25%;
+    padding: 15px;
+    background-color: #00152c;
+    border-bottom: 4px solid #fbbe28;
+}
+.report-input {
+    font-family: "Courier New";
+    border-width:0px;
+    border:none;
+    color: #00a2d6;
+    font-size: 12pt;
+    padding: 0px 0px 0px 0px;
+    width: 550px;
+    margin-right: 10px;
+    text-overflow: ellipsis;
+    text-align: left;
+    font-weight: bolder;
+}
+.line {
+    position: fixed;
+    width: 100%;
+    height: 1.5%;
+    background-color: #fbbe28;
+}
+.modal-content {
+    position: relative;
+    background-color: #011b37;
+    margin: auto;
+    padding: 0;
+    margin: 0 auto;
+    border: 2px solid #fbbe28;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+.close {
+    color: #fbbe28;
+    float: right;
+    font-size: 1.4em;
+}
+.close:hover,
+.close:focus {
+    color: #00a2d6;
+    text-decoration: none;
+    cursor: pointer;
+}
+.clickable {
+    text-decoration: underline;
+    text-decoration-color: #fbbe28;
+}
+.clickable:hover, .clickable2:hover {
+    color: #fbbe28;
+}
+.important h4 {
+    text-decoration: underline; 
+    text-decoration-color: #fbbe28;
+}
+.img-block {
+    padding: 5px;
+    color: #011b37;
+    background-color: #fbbe28;
+    border: 2px solid rgb(254, 190, 40);
+    position: absolute;
+    font-family: Courier;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.textarea {
+    font-size: 14px; 
+    border: 2px solid #fbbe28; 
+    padding: 7px 15px 5px 15px;
+}
