@@ -115,13 +115,7 @@ AddEventHandler("mdt:getOffenderDetails", function(offender)
 	if warrants[1] then
 		offender.haswarrant = true
 	end
-
-	TriggerEvent("properties:getAddress", usource, offender.identifier, function(address)
-		offender.properties = {}
-		offender.properties[1] = {}
-		offender.properties[1].label = address
-	end)
-
+	
 	local phone_number = MySQL.Sync.fetchAll('SELECT `phone_number` FROM `users` WHERE `identifier` = @identifier', {
 		['@identifier'] = offender.identifier
 	})

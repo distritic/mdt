@@ -221,9 +221,6 @@
                         <h4 v-if="offender_selected.haswarrant" v-bind:class="getClass('important')"> {{ offender_selected.firstname}} {{offender_selected.lastname}} has an active warrant. </h4>
                         <h4 v-if="offender_selected.bail" v-bind:class="getClass('important')"> {{ offender_selected.firstname}} {{offender_selected.lastname}} is on bail. </h4>
                         <h4 v-if="offender_selected.firstname == null"> ... </h4>
-                        <h3 v-if="offender_selected.firstname == null || Object.keys(offender_selected.properties).length > 0">ADDRESS</h3>
-                        <h4 v-if="Object.keys(offender_selected.properties).length > 0" v-for="address in offender_selected.properties"> {{ address.label }} </h4>
-                        <h4 v-if="offender_selected.firstname == null"> ... </h4>
                         <h3>PHONE NUMBER</h3>
                         <h4 v-if="offender_selected.phone_number"> {{offender_selected.phone_number}} </h4>
                         <h4 v-else-if="offender_selected.phone_number == null"> ... </h4>
