@@ -308,7 +308,7 @@ AddEventHandler("mdt:getNewCallCoords", function(details, callid)
 end)
 
 RegisterNetEvent("mdt:newCall")
-AddEventHandler("mdt:newCall", function(details, callid, coords)
+AddEventHandler("mdt:newCall", function(details, callid, coords, index)
     local x, y, z = table.unpack(coords)
     local var1, var2 = GetStreetNameAtCoord(x, y, z, Citizen.ResultAsInteger(), Citizen.ResultAsInteger())
     local location = GetStreetNameFromHashKey(var1)..', '..zones[GetNameOfZone(x, y, z)]
@@ -318,6 +318,7 @@ AddEventHandler("mdt:newCall", function(details, callid, coords)
         source = callid,
         coords = {x, y, z},
         location = location,
+        id = index
     })
 end)
 

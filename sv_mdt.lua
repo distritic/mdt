@@ -1,6 +1,5 @@
 ESX = nil
-
-local calls = {}
+local call_index = 0
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
@@ -501,12 +500,13 @@ end)
 
 RegisterServerEvent("mdt:newCall")
 AddEventHandler("mdt:newCall", function(details, caller, coords)
+	call_index = call_index + 1
 	local xPlayers = ESX.GetPlayers()
 	for i= 1, #xPlayers do
 		local source = xPlayers[i]
 		local xPlayer = ESX.GetPlayerFromId(source)
 		if xPlayer.job.name == 'police' then
-			TriggerClientEvent("mdt:newCall", source, details, caller, coords)
+			TriggerClientEvent("mdt:newCall", source, details, caller, coords, call_index)
 			TriggerClientEvent("InteractSound_CL:PlayOnOne", source, 'demo', 1.0)
 			TriggerClientEvent("mythic_notify:client:SendAlert", source, {type="infom", text="You have received a new call.", length=5000, style = { ['background-color'] = '#ffffff', ['color'] = '#000000' }})
 		end

@@ -55,7 +55,6 @@ const mdtApp = new Vue({
         },
 
         calls: [],
-        call_count: 0,
         current_call: {
             source: null,
             details: null,
@@ -656,12 +655,11 @@ document.onreadystatechange = () => {
             } else if (event.data.type == "sendNotification") {
                 mdtApp.showNotification(event.data.message);
             } else if (event.data.type == "newCall") {
-                mdtApp.call_count = mdtApp.call_count + 1;
                 var today = new Date();
                 var time = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                 var call = {
                     source: event.data.source,
-                    id: mdtApp.call_count,
+                    id: event.data.id,
                     details: event.data.details,
                     coords: event.data.coords,
                     location: event.data.location,
