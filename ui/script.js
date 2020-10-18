@@ -666,7 +666,7 @@ document.onreadystatechange = () => {
                     time: time,
                     officers: []
                 }
-                mdtApp.calls.push(call)
+                Vue.set(mdtApp.calls, event.data.id, call)
             } else if (event.data.type == "newCallAttach") {
                 mdtApp.calls[event.data.call].officers.push(event.data.charname)
             } else if (event.data.type == "newCallDetach") {
@@ -691,7 +691,7 @@ document.onreadystatechange = () => {
                         location: null
                     }
                 }
-                mdtApp.calls.splice(event.data.call, 1);
+                Vue.delete(mdtApp.calls, event.data.call)
             } else if (event.data.type == "closeModal") {
                 mdtApp.modal = null;
             };
