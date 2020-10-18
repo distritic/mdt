@@ -54,7 +54,7 @@ const mdtApp = new Vue({
             recommended_fine: 0,
         },
 
-        calls: [],
+        calls: {},
         current_call: {
             source: null,
             details: null,
