@@ -155,6 +155,12 @@ AddEventHandler("mdt:getOffenderDetailsById", function(char_id)
 	})
 	local offender = result[1]
 
+	if not offender then
+		TriggerClientEvent("mdt:closeModal", usource)
+		TriggerClientEvent("mdt:sendNotification", usource, "This person no longer exists.")
+		return
+	end
+
 	GetLicenses(offender.identifier, function(licenses) offender.licenses = licenses end)
 	while offender.licenses == nil do Citizen.Wait(0) end
 
@@ -486,6 +492,9 @@ AddEventHandler("mdt:getReportDetailsById", function(query, _source)
 		if result and result[1] then
 			result[1].charges = json.decode(result[1].charges)
 			TriggerClientEvent("mdt:returnReportDetails", usource, result[1])
+		else
+			TriggerClientEvent("mdt:closeModal", usource)
+			TriggerClientEvent("mdt:sendNotification", usource, "This report cannot be found.")
 		end
 	end)
 end)

@@ -694,6 +694,8 @@ document.onreadystatechange = () => {
                     }
                 }
                 mdtApp.calls.splice(event.data.call, 1);
+            } else if (event.data.type == "closeModal") {
+                mdtApp.modal = null;
             };
         });
     };

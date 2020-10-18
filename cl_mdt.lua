@@ -202,6 +202,13 @@ AddEventHandler("mdt:returnOffenderSearchResults", function(results)
     })
 end)
 
+RegisterNetEvent("mdt:closeModal")
+AddEventHandler("mdt:closeModal", function()
+    SendNUIMessage({
+        type = "closeModal"
+    })
+end)
+
 RegisterNetEvent("mdt:returnOffenderDetails")
 AddEventHandler("mdt:returnOffenderDetails", function(data)
     for i = 1, #data.vehicles do
