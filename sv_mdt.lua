@@ -576,7 +576,7 @@ AddEventHandler("mdt:saveVehicleChanges", function(data)
 	if data.stolen then data.stolen = 1 else data.stolen = 0 end
 	local usource = source
 	MySQL.Async.fetchAll('SELECT * FROM `vehicle_mdt` WHERE `plate` = @plate', {
-		['@plate'] = plate
+		['@plate'] = data.plate
 	}, function(result)
 		if result[1] then
 			MySQL.Async.execute('UPDATE `vehicle_mdt` SET `stolen` = @stolen, `notes` = @notes WHERE `plate` = @plate', {
