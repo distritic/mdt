@@ -29,13 +29,13 @@
     margin: 1px 1px 1px 1px;
 }
 .content li {
-    font-family: "Courier";
-    font-weight: bolder;
-    color: white;
+    font-family: "Arial";
+    font-weight: 780;
+    color: black;
     float: left;
-    padding-left: 16px;
-    padding-right: 16px;
-    border-right: 2px solid #fbbe28;
+    padding-left: 18px;
+    padding-right: 18px;
+    font-size:14px;
 }
 .content li:last-child {
     border-right: none;
@@ -128,7 +128,6 @@
     top: 1.5%;
     max-width: 160px;
     height: auto;
-    background-color: #011b37;
 }
 .mugshot {
     display: inline-block;
@@ -162,10 +161,10 @@
     font-weight: bolder;
 }
 .line {
-    position: fixed;
-    width: 100%;
-    height: 1.5%;
-    background-color: #fbbe28;
+    background-image: linear-gradient(to right, rgb(251, 190, 40),  rgb(251, 190, 40)calc(3% - 3px), rgba(0,0,0,0) calc(3% - 3px), rgba(0,0,0,0) calc(3% + 161px), rgb(251, 190, 40) calc(3% + 161px), rgb(251, 190, 40));
+}
+.line2 {
+    background: rgb(251, 190, 40);
 }
 .modal-content {
     position: relative;
