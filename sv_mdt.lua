@@ -67,7 +67,7 @@ RegisterServerEvent("mdt:performOffenderSearch")
 AddEventHandler("mdt:performOffenderSearch", function(query)
 	local usource = source
 	local matches = {}
-	MySQL.Async.fetchAll("SELECT * FROM `users` WHERE LOWER(`firstname`) LIKE @query OR LOWER(`lastname`) LIKE @query OR CONCAT(LOWER(`firstname`), ' ', LOWER(`lastname`)) LIKE @query OR `phone_number` LIKE @query2", {
+	MySQL.Async.fetchAll("SELECT * FROM `characters` WHERE LOWER(`firstname`) LIKE @query OR LOWER(`lastname`) LIKE @query OR CONCAT(LOWER(`firstname`), ' ', LOWER(`lastname`)) LIKE @query OR `phone_number` LIKE @query2", {
 		['@query'] = string.lower('%'..query..'%'), -- % wildcard, needed to search for all alike results
 		['@query2'] = string.lower(query..'%')
 	}, function(result)
@@ -116,7 +116,7 @@ AddEventHandler("mdt:getOffenderDetails", function(offender)
 		offender.haswarrant = true
 	end
 
-	local phone_number = MySQL.Sync.fetchAll('SELECT `phone_number` FROM `users` WHERE `identifier` = @identifier', {
+	local phone_number = MySQL.Sync.fetchAll('SELECT `phone_number` FROM `characters` WHERE `identifier` = @identifier', {
 		['@identifier'] = offender.identifier
 	})
 	offender.phone_number = phone_number[1].phone_number
@@ -150,7 +150,7 @@ RegisterServerEvent("mdt:getOffenderDetailsById")
 AddEventHandler("mdt:getOffenderDetailsById", function(char_id)
 	local usource = source
 
-	local result = MySQL.Sync.fetchAll('SELECT * FROM `users` WHERE `id` = @id', {
+	local result = MySQL.Sync.fetchAll('SELECT * FROM `characters` WHERE `id` = @id', {
 		['@id'] = char_id
 	})
 	local offender = result[1]
@@ -194,7 +194,7 @@ AddEventHandler("mdt:getOffenderDetailsById", function(char_id)
 		offender.haswarrant = true
 	end
 
-	local phone_number = MySQL.Sync.fetchAll('SELECT `phone_number` FROM `users` WHERE `identifier` = @identifier', {
+	local phone_number = MySQL.Sync.fetchAll('SELECT `phone_number` FROM `characters` WHERE `identifier` = @identifier', {
 		['@identifier'] = offender.identifier
 	})
 	offender.phone_number = phone_number[1].phone_number
@@ -402,7 +402,7 @@ end)
 RegisterServerEvent("mdt:getVehicle")
 AddEventHandler("mdt:getVehicle", function(vehicle)
 	local usource = source
-	local result = MySQL.Sync.fetchAll("SELECT * FROM `users` WHERE `identifier` = @query", {
+	local result = MySQL.Sync.fetchAll("SELECT * FROM `characters` WHERE `identifier` = @query", {
 		['@query'] = vehicle.owner
 	})
 	if result[1] then
@@ -641,7 +641,7 @@ function GetCharacterName(source)
 	
 --[[	-- If the wrong name displays, remove `return xPlayer.getName()` and uncomment this code block
 	local identifier = xPlayer.getIdentifier()
-	local result = MySQL.Sync.fetchAll('SELECT firstname, lastname FROM `users` WHERE identifier = @identifier', {
+	local result = MySQL.Sync.fetchAll('SELECT firstname, lastname FROM `characters` WHERE identifier = @identifier', {
 	['@identifier'] = identifier
 	})
 
