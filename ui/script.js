@@ -274,7 +274,7 @@ const mdtApp = new Vue({
             }
         },
         SubmitNewReport() {
-            if (this.report_new.title && this.report_new.char_id && (Object.keys(this.report_new.charges).length > 0) && this.report_new.incident) {
+            if (this.report_new.title && this.report_new.char_id && this.report_new.incident) {
                 $.post('http://mdt/submitNewReport', JSON.stringify({
                     title: this.report_new.title,
                     char_id: this.report_new.char_id,
