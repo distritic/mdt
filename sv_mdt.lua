@@ -633,12 +633,20 @@ function GetLicenses(identifier, cb)
 end
 
 function GetCharacterName(source)
-	local result = MySQL.Sync.fetchAll('SELECT firstname, lastname FROM users WHERE identifier = @identifier', {
-		['@identifier'] = GetPlayerIdentifiers(source)[1]
-	})
+	local xPlayer = ESX.GetPlayerFromId(source)
+	if xPlayer then
+		return xPlayer.getName()
+		
+	--[[	-- If the wrong name displays, remove `return xPlayer.getName()` and uncomment this code block
+		local identifier = xPlayer.getIdentifier()
+		local result = MySQL.Sync.fetchAll('SELECT firstname, lastname FROM `users` WHERE identifier = @identifier', {
+		['@identifier'] = identifier
+		})
 
-	if result[1] and result[1].firstname and result[1].lastname then
-		return ('%s %s'):format(result[1].firstname, result[1].lastname)
+		if result[1] and result[1].firstname and result[1].lastname then
+			return ('%s %s'):format(result[1].firstname, result[1].lastname)
+		end
+	]]
 	end
 end
 
