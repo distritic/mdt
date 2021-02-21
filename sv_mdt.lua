@@ -3,26 +3,6 @@ local call_index = 0
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-TriggerEvent('es:addCommand', 'mdt', function(source, args, user)
-	local usource = source
-    local xPlayer = ESX.GetPlayerFromId(source)
-    if xPlayer.job.name == 'police' then
-    	MySQL.Async.fetchAll("SELECT * FROM (SELECT * FROM `mdt_reports` ORDER BY `id` DESC LIMIT 3) sub ORDER BY `id` DESC", {}, function(reports)
-    		for r = 1, #reports do
-    			reports[r].charges = json.decode(reports[r].charges)
-    		end
-    		MySQL.Async.fetchAll("SELECT * FROM (SELECT * FROM `mdt_warrants` ORDER BY `id` DESC LIMIT 3) sub ORDER BY `id` DESC", {}, function(warrants)
-    			for w = 1, #warrants do
-    				warrants[w].charges = json.decode(warrants[w].charges)
-    			end
-
-    			local officer = GetCharacterName(usource)
-    			TriggerClientEvent('mdt:toggleVisibilty', usource, reports, warrants, officer, xPlayer.job.name)
-    		end)
-    	end)
-    end
-end)
-
 RegisterServerEvent("mdt:hotKeyOpen")
 AddEventHandler("mdt:hotKeyOpen", function()
 	local usource = source
