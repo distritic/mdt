@@ -90,10 +90,10 @@
 
                     <h2 class="page-title">SEARCH DATABASE</h2>
 
-                    <form >
-                        <input v-model="report_search" type="text" placeholder="Name or Report ID" required>
+                    <el-form @keyup.enter.native>
+                        <input v-on:keyup.enter="ReportSearch()" v-model="report_search" type="text" placeholder="Name or Report ID" required>
                         <button v-on:click="ReportSearch()" type="button" >SEARCH</button>
-                    </form>
+                    </el-form>
                     
                     <br />
 
@@ -142,12 +142,12 @@
                     <h2 class="page-title">NEW REPORT</h2>
                     
                     <div class="left-side" style="position:absolute; top: 20%; max-height: 450px;">
-                        <form >
+                        <el-form @keyup.enter.native>
                             <h3>NAME</h3>
                             <h4 v-if="report_new.name" style="font-size: 14px;"> {{ report_new.name }} </h4>
                             <h4 v-else-if="report_new.name == null"> ... </h4>
                             <h3>INCIDENT</h3>
-                            <input v-model="report_new.title" style="font-size: 14px;" type="text" placeholder="Enter report title" class="report-input" required>
+                            <input v-on:keyup.enter="SubmitNewReport()" v-model="report_new.title" style="font-size: 14px;" type="text" placeholder="Enter report title" class="report-input" required>
                             <h3>DETAILS</h3>
                             <textarea v-model="report_new.incident" :class="getClass('textarea')" rows="6" cols="55" placeholder="Enter report description" onkeypress='this.style.height = "";this.style.height = this.scrollHeight + "px"' required>
                             </textarea>
@@ -164,16 +164,16 @@
                             <button v-if="report_new.char_id && report_new.incident && report_new.title" v-on:click="SubmitNewReport()" type="button" style="margin-top: 20px">SUBMIT REPORT</button>
                             <button v-if="report_new.focus == 'charges'" v-on:click="report_new.focus = 'name'" type="button" style="margin-top: 20px">SEARCH OFFENDER</button>
                             <button v-if="report_new.focus == 'name'" v-on:click="report_new.focus = 'charges'" type="button" style="margin-top: 20px">SEARCH CHARGES</button>
-                        </form>
+                        </el-form>
                     </div>
 
                     <div class="right-side" style="position: absolute; top: 15%;">
                         <div v-if="report_new.focus == 'name'">
                             <h3 style="margin: 10px 0px">SEARCH OFFENDER</h3>
-                            <form >
+                            <el-form @keyup.enter.native>
                                 <input v-model="offender_search" type="text" placeholder="Full or partial name" required>
                                 <button v-on:click="OffenderSearch()" type="button" >SEARCH</button>
-                            </form>
+                            </el-form>
 
                             <div v-if="offender_results.query" style="max-height: 380px; margin-right: 10px;">
                                 <h3>SEARCH RESULTS</h3>
@@ -188,9 +188,9 @@
                         <div v-else-if="report_new.focus == 'charges'">
                             <h3 style="margin: 10px 0px">SEARCH CHARGES</h3>
                             <div v-if="offenses" style="max-height: 440px; margin-right: 10px;">
-                                <form >
-                                    <input v-model="report_new.charges_search" type="text" placeholder="Filter charges" style="width: 80%;" required>  
-                                </form>
+                                <el-form @keyup.enter.native>
+                                    <input v-on:keyup.enter="AddCharge(offense.id)" v-model="report_new.charges_search" type="text" placeholder="Filter charges" style="width: 80%;" required>  
+                                </el-form>
                                 <span v-for="offense in filtered_offenses">
                                     <button type="button" v-on:click="AddCharge(offense.id)" style="margin-bottom: 10px; width: 100%; padding: unset;">{{ offense.label }}</button>
                                     <br />
@@ -205,10 +205,10 @@
 
                     <h2 class="page-title">SEARCH DATABASE</h2>
 
-                    <form >
-                        <input v-model="offender_search" type="text" placeholder="Full or partial name" required>
+                    <el-form @keyup.enter.native>
+                        <input v-on:keyup.enter="OffenderSearch()" v-model="offender_search" type="text" placeholder="Full or partial name" required>
                         <button v-on:click="OffenderSearch()" type="button" >SEARCH</button>
-                    </form>
+                    </el-form>
                     
                     <br />
 
@@ -287,7 +287,7 @@
 							<h3 style="text-align: left; margin: 0; padding: 0; margin-bottom: 15px;">EDIT DETAILS</h3>
 		                    <br />
 		                    <div style="max-height: 55%; overflow-y: auto;">
-		                        <form>
+		                        <el-form @keyup.enter.native>
 		                            <h3>NOTES</h3>
 		                            <input v-model="offender_changes.notes" class="no-select" type="text" v-bind:placeholder="offender_selected.notes">
 		                            <h3 style="margin-top: 20px">MUGSHOT URL</h3>
@@ -304,7 +304,7 @@
 		                                </h4>
 		                            </span>
 		                            <br />
-		                        </form>
+		                        </el-form>
 		                        <h3>CONVICTIONS</h3>
 		                        <h4 v-if="offender_changes.convictions == null || (offender_changes.convictions && Object.keys(offender_changes.convictions).length == 0)"> ... </h4>
 		                        <span v-else-if="offender_changes.convictions" v-for="(value, name) in offender_changes.convictions">
@@ -346,10 +346,10 @@
                         </template>
                         <template v-else-if="report_edit.enable == true">
                             <h3>DETAILS (EDIT)</h3>
-                            <form>
+                            <el-form @keyup.enter.native>
                                 <textarea v-model="report_edit.data.incident" :class="getClass('textarea')" onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' onkeypress='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Enter report description" required>
                                 </textarea>
-                            </form>
+                            </el-form>
                         </template>
                         <h3>CHARGES</h3>
                         <span v-for="(amount, offense) in report_selected.charges" :key="offense">
@@ -373,9 +373,9 @@
 
                 <div v-if="page == 'Warrants'">
                     <h2 class="page-title">ACTIVE WARRANTS</h2>
-                    <form >
+                    <el-form @keyup.enter.native>
                         <input v-model="warrant_search" type="text" placeholder="Filter warrants" required>
-                    </form>
+                    </el-form>
                     <br />
 
                     <div style="max-width: 1000px; width: 1000px; float: unset; margin: 0 auto;">
@@ -403,10 +403,10 @@
                 <div v-if="page == 'Search Vehicles'">
                     <h2 class="page-title">SEARCH DATABASE</h2>
 
-                    <form >
-                        <input v-model="vehicle_search" type="text" placeholder="Full or partial plate" required>
+                    <el-form @keyup.enter.native>
+                        <input v-on:keyup.enter="VehicleSearch()" v-model="vehicle_search" type="text" placeholder="Full or partial plate" required>
                         <button v-on:click="VehicleSearch()" type="button" >SEARCH</button>
-                    </form>
+                    </el-form>
                     
                     <br />
 
@@ -468,7 +468,7 @@
                     <h2 class="page-title">NEW WARRANT</h2>
 
                     <div class="left-side" style="position: absolute; float: none; top: 15%; max-height: 450px;">
-                        <form >
+                        <el-form @keyup.enter.native>
                             <h3>REPORT</h3>
                             <h4 v-if="warrant_new.report_title" style="font-size: 14px;"> {{ warrant_new.report_title }} </h4>
                             <h4 v-else-if="warrant_new.report_title == null"> ... </h4>
@@ -485,17 +485,17 @@
                                 </h4>
                             </span>
                             <button v-if="warrant_new.report_id && warrant_new.char_id" v-on:click="SubmitNewWarrant()" type="button" style="margin-top: 20px">SUBMIT WARRANT</button>
-                        </form>
+                        </el-form>
                     </div>
 
                     <div class="right-side" style="max-height: 510px;">
                         <h3 v-if="report_results.results">SEARCH RESULTS</h3>
                         <h3 v-else-if="report_results.query == ''">SEARCH REPORTS</h3>
                         <br />
-                        <form >
+                        <el-form @keyup.enter.native>
                             <input v-model="warrant_new.report_search" type="text" placeholder="Name or Incident ID" required>
                             <button v-on:click="WarrantReportSearch()" type="button" >SEARCH</button>
-                        </form>
+                        </el-form>
                         <div v-if="report_results.results" style="margin-right: 10px;">
                             <h4 style="margin: 10px 1px 30px 1px;">Finding results for '{{ warrant_new.report_search }}'...</h4>
                             <span v-if="report_results.results" v-for="result in report_results.results">
