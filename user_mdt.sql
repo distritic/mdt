@@ -1,4 +1,7 @@
-USE `essentialmode`;
+ALTER TABLE `users` ADD (
+	`id` int(10) UNSIGNED AUTO_INCREMENT,
+	UNIQUE KEY (`id`)
+);
 
 CREATE TABLE `user_mdt` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,

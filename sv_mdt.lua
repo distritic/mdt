@@ -19,7 +19,7 @@ AddEventHandler("mdt:hotKeyOpen", function()
 
 
     			local officer = GetCharacterName(usource)
-    			TriggerClientEvent('mdt:toggleVisibilty', usource, reports, warrants, officer, xPlayer.job.name)
+    			TriggerClientEvent('mdt:toggleVisibilty', usource, reports, warrants, officer, xPlayer.job.name, xPlayer.job.grade_label)
     		end)
     	end)
     end
@@ -47,8 +47,9 @@ RegisterServerEvent("mdt:performOffenderSearch")
 AddEventHandler("mdt:performOffenderSearch", function(query)
 	local usource = source
 	local matches = {}
-	MySQL.Async.fetchAll("SELECT * FROM `characters` WHERE LOWER(`firstname`) LIKE @query OR LOWER(`lastname`) LIKE @query OR CONCAT(LOWER(`firstname`), ' ', LOWER(`lastname`)) LIKE @query", {
-		['@query'] = string.lower('%'..query..'%') -- % wildcard, needed to search for all alike results
+	MySQL.Async.fetchAll("SELECT * FROM `users` WHERE LOWER(`firstname`) LIKE @query OR LOWER(`lastname`) LIKE @query OR CONCAT(LOWER(`firstname`), ' ', LOWER(`lastname`)) LIKE @query OR `phone_number` LIKE @query2", {
+		['@query'] = string.lower('%'..query..'%'), -- % wildcard, needed to search for all alike results
+		['@query2'] = string.lower(query..'%')
 	}, function(result)
 
 		for index, data in ipairs(result) do
@@ -129,7 +130,7 @@ RegisterServerEvent("mdt:getOffenderDetailsById")
 AddEventHandler("mdt:getOffenderDetailsById", function(char_id)
 	local usource = source
 
-	local result = MySQL.Sync.fetchAll('SELECT * FROM `characters` WHERE `id` = @id', {
+	local result = MySQL.Sync.fetchAll('SELECT * FROM `users` WHERE `id` = @id', {
 		['@id'] = char_id
 	})
 	local offender = result[1]
@@ -381,7 +382,7 @@ end)
 RegisterServerEvent("mdt:getVehicle")
 AddEventHandler("mdt:getVehicle", function(vehicle)
 	local usource = source
-	local result = MySQL.Sync.fetchAll("SELECT * FROM `characters` WHERE `identifier` = @query", {
+	local result = MySQL.Sync.fetchAll("SELECT * FROM `users` WHERE `identifier` = @query", {
 		['@query'] = vehicle.owner
 	})
 	if result[1] then
@@ -479,7 +480,7 @@ AddEventHandler("mdt:getReportDetailsById", function(query, _source)
 end)
 
 RegisterServerEvent("mdt:newCall")
-AddEventHandler("mdt:newCall", function(details, caller, coords)
+AddEventHandler("mdt:newCall", function(details, caller, coords, sendNotification)
 	call_index = call_index + 1
 	local xPlayers = ESX.GetPlayers()
 	for i= 1, #xPlayers do
@@ -487,8 +488,10 @@ AddEventHandler("mdt:newCall", function(details, caller, coords)
 		local xPlayer = ESX.GetPlayerFromId(source)
 		if xPlayer.job.name == 'police' then
 			TriggerClientEvent("mdt:newCall", source, details, caller, coords, call_index)
-			TriggerClientEvent("InteractSound_CL:PlayOnOne", source, 'demo', 1.0)
-			TriggerClientEvent("mythic_notify:client:SendAlert", source, {type="infom", text="You have received a new call.", length=5000, style = { ['background-color'] = '#ffffff', ['color'] = '#000000' }})
+			if sendNotification ~= false then
+				TriggerClientEvent("InteractSound_CL:PlayOnOne", source, 'demo', 0.0)
+				TriggerClientEvent("mythic_notify:client:SendAlert", source, {type="infom", text="You have received a new call.", length=5000, style = { ['background-color'] = '#ffffff', ['color'] = '#000000' }})
+			end
 		end
 	end
 end)

@@ -4,7 +4,8 @@ const mdtApp = new Vue({
         page: "Home",
         officer: {
             name: "Guest",
-            department: "police"
+            department: "police",
+			rank: ''
         },
         style: {
             police: true
