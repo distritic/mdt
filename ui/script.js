@@ -647,6 +647,7 @@ document.onreadystatechange = () => {
                 mdtApp.homepage.reports = event.data.reports;
                 mdtApp.homepage.warrants = event.data.warrants;
                 mdtApp.officer.name = event.data.officer;
+				mdtApp.officer.rank = event.data.rank + ' ';
                 if (mdtApp.officer.department != event.data.department) {
                     mdtApp.officer.department = event.data.department;
                     if (event.data.department == 'police') {

@@ -51,7 +51,7 @@ AddEventHandler("mdt:toggleVisibilty", function(reports, warrants, officer, job,
         warrants = warrants,
         officer = officer,
         department = job,
-		rank = grade
+        rank = grade
     })
     ToggleGUI()
 end)
