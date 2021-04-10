@@ -67,6 +67,7 @@ end)
 
 RegisterNUICallback("performOffenderSearch", function(data, cb)
     TriggerServerEvent("mdt:performOffenderSearch", data.query)
+    TriggerServerEvent("mdt:getOffensesAndOfficer")
     cb('ok')
 end)
 
