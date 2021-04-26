@@ -6,13 +6,15 @@ local zones = { ['AIRP'] = "Los Santos International Airport", ['ALAMO'] = "Alam
 RegisterCommand('mdt', function()
     local playerPed = PlayerPedId()
     local playerVeh = GetVehiclePedIsIn(playerPed, false)
-    if not isVisible and IsPedInAnyPoliceVehicle(playerPed) and GetEntitySpeed(playerVeh) < 5.0 then
+    if not isVisible and not IsPauseMenuActive() and IsPedInAnyPoliceVehicle(playerPed) and GetEntitySpeed(playerVeh) < 5.0 then
         if GetVehicleNumberPlateText(getVehicleInFront()) then
             TriggerServerEvent("mdt:performVehicleSearchInFront", GetVehicleNumberPlateText(getVehicleInFront()))
         else
+            if not and not IsPauseMenuActive() then
             TriggerServerEvent("mdt:hotKeyOpen")
+            end
         end
-    elseif not IsPedInAnyPoliceVehicle(playerPed) then
+    elseif not and not IsPauseMenuActive() IsPedInAnyPoliceVehicle(playerPed) then
         TriggerServerEvent("mdt:hotKeyOpen")
     end
     if DoesEntityExist(playerPed) and IsPedUsingActionMode(playerPed) then -- disable action mode/combat stance when engaged in combat (thing which makes you run around like an idiot when shooting)
