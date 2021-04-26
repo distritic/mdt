@@ -10,11 +10,11 @@ RegisterCommand('mdt', function()
         if GetVehicleNumberPlateText(getVehicleInFront()) then
             TriggerServerEvent("mdt:performVehicleSearchInFront", GetVehicleNumberPlateText(getVehicleInFront()))
         else
-            if not and not IsPauseMenuActive() then
+            if not IsPauseMenuActive() then
             TriggerServerEvent("mdt:hotKeyOpen")
             end
         end
-    elseif not and not IsPauseMenuActive() IsPedInAnyPoliceVehicle(playerPed) then
+    elseif not IsPauseMenuActive() and IsPedInAnyPoliceVehicle(playerPed) then
         TriggerServerEvent("mdt:hotKeyOpen")
     end
     if DoesEntityExist(playerPed) and IsPedUsingActionMode(playerPed) then -- disable action mode/combat stance when engaged in combat (thing which makes you run around like an idiot when shooting)
