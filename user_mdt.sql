@@ -1,5 +1,5 @@
 ALTER TABLE `users` ADD (
-	`id` int(10) UNSIGNED AUTO_INCREMENT,
+	`id` int(11) NOT NULL AUTO_INCREMENT,
 	UNIQUE KEY (`id`)
 );
 
