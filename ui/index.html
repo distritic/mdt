@@ -18,10 +18,10 @@
             <img src="footer.png" id="banner" >
             
             <p v-if="officer.department == 'police'" style="font-family: 'Georgia'; font-style: italic; font-size: 20pt; text-align: center;">Los Santos Police Department</p>
-            <p style="position: fixed; left: 17%; top: 5.5%">Welcome, {{ officer.name }}.</p>
+            <p style="position: fixed; left: 17%; top: 5.5%">Welcome, {{ officer.rank }}{{ officer.name }}.</p>
             <button type="button" v-on:click="closeMDT()" style="position: fixed; right: 10%; top: 5.5%">LOGOUT</button>
 
-            <div style="position: fixed; left: 16%; top: 12.5%;">
+            <div style="position: fixed; left: 16%; top: 10.5%;">
                 <ul>
                     <li v-on:click="changePage('Home')" id="home" >Home</li>
                     <li v-on:click="changePage('Search Offenders')" id="search-offenders" >Search Persons</li>
@@ -80,10 +80,7 @@
                         </span>
                     </div>
 
-                    <div style="bottom: 0%; position: absolute; margin: 0 auto; width: 100%;">
-                        <br />
-                        <button type="button" v-on:click="homepage.button_press = homepage.button_press + 1;">CLICK ME: {{homepage.button_press}}</button>
-                    </div>
+                    
                 </div>
 
                 <div v-if="page == 'Search Reports'">
@@ -620,7 +617,7 @@
             </main>
             
             <p v-if="officer.department == 'police'" style="font-family: 'Georgia'; font-style: italic; font-size: 20pt; position: fixed; bottom: 1%; right: 5.5%; direction: rtl;">Obey & Survive</p>
-            <div v-bind:class="getClass('line')" style="bottom: 10%"></div>
+            <div v-bind:class="getClass('line2')" style="bottom: 10%"></div>
         </div>
     </div>
 

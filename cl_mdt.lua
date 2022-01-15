@@ -27,7 +27,7 @@ RegisterKeyMapping('mdt', 'Display the mdt', 'keyboard', 'delete')
 TriggerServerEvent("mdt:getOffensesAndOfficer")
 
 RegisterNetEvent("mdt:toggleVisibilty")
-AddEventHandler("mdt:toggleVisibilty", function(reports, warrants, officer, job)
+AddEventHandler("mdt:toggleVisibilty", function(reports, warrants, officer, job, grade)
     local playerPed = PlayerPedId()
     if not isVisible then
         local dict = "amb@world_human_seat_wall_tablet@female@base"
@@ -52,7 +52,8 @@ AddEventHandler("mdt:toggleVisibilty", function(reports, warrants, officer, job)
         reports = reports,
         warrants = warrants,
         officer = officer,
-        department = job
+        department = job,
+        rank = grade
     })
     ToggleGUI()
 end)
@@ -68,6 +69,7 @@ end)
 
 RegisterNUICallback("performOffenderSearch", function(data, cb)
     TriggerServerEvent("mdt:performOffenderSearch", data.query)
+    TriggerServerEvent("mdt:getOffensesAndOfficer")
     cb('ok')
 end)
 
